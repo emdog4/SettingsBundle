@@ -17,6 +17,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *textField;
 
 // Actions
-- (IBAction)setPreferences:(id)sender;
+- (IBAction)sliderChanged:(UISlider *)sender;
+- (IBAction)switchValueChanged:(UISwitch *)sender;
+- (IBAction)textFieldEditingChanged:(UITextField *)sender;
 
 @end

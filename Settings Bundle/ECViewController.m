@@ -57,20 +57,41 @@
     [self.view endEditing:YES];
 }
 
-- (void)setPreferences:(id)sender {
+- (IBAction)sliderChanged:(id)sender {
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-
-    [defaults setBool:[self.firstSwitch isOn] forKey:@"my_switch"];
     
     [defaults setFloat:[self.firstSlider value] forKey:@"my_slider"];
     
-    [defaults setBool:[self.secondSwitch isOn] forKey:@"my_switch_2"];
+    [defaults synchronize];
+}
+
+- (IBAction)switchValueChanged:(UISwitch *)sender {
+    
+    NSString *key = @"my_switch";
+    
+    if (sender.tag == 2) {
+        key = @"my_switch_2";
+    }
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    [defaults setBool:[sender isOn] forKey:key];
+    
+    [defaults synchronize];
+    
+}
+
+- (IBAction)textFieldEditingChanged:(UITextField *)sender {
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     [defaults setObject:[self.textField text] forKey:@"my_textfield"];
     
-    // Sync
     [defaults synchronize];
+    
 }
+
+
 
 @end
